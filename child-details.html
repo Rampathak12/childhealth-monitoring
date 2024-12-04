@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Child Details - Child Health Monitoring</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Enter Child Details</h1>
+  </header>
+
+  <section class="child-details-container">
+    <form id="child-details-form">
+      <input type="text" id="child-name" placeholder="Child's Name" required>
+      <input type="number" id="child-age" placeholder="Age" required>
+      <input type="text" id="child-gender" placeholder="Gender" required>
+      <input type="file" id="child-photo" accept="image/*">
+      <button type="submit" id="save-child-details-btn">Save Child Details</button>
+    </form>
+  </section>
+
+  <!-- The Next Button for Navigation -->
+  <footer>
+    <button id="next-btn" onclick="window.location.href='growth-tracking.html'">Next: Growth Tracking</button>
+  </footer>
+</body>
+</html>

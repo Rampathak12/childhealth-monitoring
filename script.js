@@ -1,124 +1,54 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
-import { Chart } from "https://cdn.jsdelivr.net/npm/chart.js";
-
-const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID",
-  };
+document.getElementById('sign-up-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    signUp(email, password);
+  });
   
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth();
-
-async function signUp(email, password) {
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-    console.log('User signed up:', user);
-  } catch (error) {
-    console.error('Error signing up:', error.message);
-  }
-}
-
-async function signIn(email, password) {
-  try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-    console.log('User signed in:', user);
-  } catch (error) {
-    console.error('Error signing in:', error.message);
-  }
-}
-
-async function addProfile(name, age, gender, medicalHistory) {
-  try {
-    const docRef = await addDoc(collection(db, "profiles"), {
-      name: name,
-      age: age,
-      gender: gender,
-      medicalHistory: medicalHistory,
-    });
-    alert("Profile added successfully!");
-    loadProfiles();
-  } catch (e) {
-    console.error("Error adding profile:", e);
-  }
-}
-
-async function loadProfiles() {
-  const querySnapshot = await getDocs(collection(db, "profiles"));
-  const profileList = document.getElementById("profile-list");
-  profileList.innerHTML = "";
-  querySnapshot.forEach((doc) => {
-    const profile = doc.data();
-    const profileDiv = document.createElement("div");
-    profileDiv.classList.add("profile");
-    profileDiv.innerHTML = `
-      <h3>${profile.name}</h3>
-      <p>Age: ${profile.age}</p>
-      <p>Gender: ${profile.gender}</p>
-      <p>Medical History: ${profile.medicalHistory}</p>
-    `;
-    profileList.appendChild(profileDiv);
+  document.getElementById('login-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+    login(email, password);
   });
-}
-
-async function addGrowthMetrics(profileId, height, weight, bmi) {
-  try {
-    const docRef = await addDoc(collection(db, "growthMetrics"), {
-      profileId: profileId,
-      height: height,
-      weight: weight,
-      bmi: bmi,
-      date: new Date().toISOString(),
-    });
-    alert("Growth metrics added!");
-    renderGrowthChart();
-  } catch (e) {
-    console.error("Error adding growth metrics:", e);
-  }
-}
-
-function renderGrowthChart() {
-  const ctx = document.getElementById("growthChart").getContext("2d");
-  new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: ["Height (cm)", "Weight (kg)", "BMI"],
-      datasets: [
-        {
-          label: "Growth Metrics",
-          data: [150, 45, 18],
-          borderColor: "blue",
-        },
-      ],
-    },
+  
+  document.getElementById('child-details-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('child-name').value;
+    const age = document.getElementById('child-age').value;
+    const gender = document.getElementById('child-gender').value;
+    const photo = document.getElementById('child-photo').files[0];
+    saveChildDetails(name, age, gender, photo);
   });
-}
-
-document.getElementById("add-profile-btn").addEventListener("click", () => {
-  const name = prompt("Enter child name:");
-  const age = parseInt(prompt("Enter child age:"), 10);
-  const gender = prompt("Enter child gender (Male/Female):");
-  const medicalHistory = prompt("Enter medical history:");
-  if (name && age && gender && medicalHistory) {
-    addProfile(name, age, gender, medicalHistory);
+  
+  document.getElementById('growth-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const height = document.getElementById('height').value;
+    const weight = document.getElementById('weight').value;
+    const bmi = document.getElementById('bmi').value;
+    submitGrowthMetrics(height, weight, bmi);
+  });
+  
+  function signUp(email, password) {
+    alert(`Signing up with email: ${email}`);
+    // Here, use Firebase Authentication to handle sign-up logic
   }
-});
-
-document.getElementById("growth-form").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const height = parseFloat(document.getElementById("height").value);
-  const weight = parseFloat(document.getElementById("weight").value);
-  const bmi = parseFloat(document.getElementById("bmi").value);
-  addGrowthMetrics("profile_id", height, weight, bmi);
-});
-
-document.addEventListener("DOMContentLoaded", loadProfiles);
+  
+  function login(email, password) {
+    alert(`Logging in with email: ${email}`);
+    // Here, use Firebase Authentication to handle login logic
+  }
+  
+  function saveChildDetails(name, age, gender, photo) {
+    alert(`Saving child details: ${name}, Age: ${age}, Gender: ${gender}`);
+    if (photo) {
+      alert(`Uploading photo: ${photo.name}`);
+      // Use Firebase Storage to upload the photo here
+    }
+  }
+  
+  function submitGrowthMetrics(height, weight, bmi) {
+    alert(`Submitting growth metrics: Height: ${height}, Weight: ${weight}, BMI: ${bmi}`);
+    // Save metrics to Firebase Firestore here
+  }
+  

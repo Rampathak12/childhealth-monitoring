@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Growth Tracking - Child Health Monitoring</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Track Growth Metrics</h1>
+  </header>
+
+  <section class="growth-tracking-container">
+    <form id="growth-form">
+      <label for="height">Height (cm): <input type="number" id="height" required></label>
+      <label for="weight">Weight (kg): <input type="number" id="weight" required></label>
+      <label for="bmi">BMI: <input type="number" id="bmi" required></label>
+      <button type="submit" id="submit-growth-btn">Submit Metrics</button>
+    </form>
+  </section>
+
+  <footer>
+    <button onclick="window.location.href='child-details.html'">Back to Child Details</button>
+  </footer>
+</body>
+</html>
