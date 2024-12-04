@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Child Details - Child Health Monitoring</title>
+  <title>Child Profile - Child Health Monitoring</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
   <header>
-    <h1>Enter Child Details</h1>
+    <h1>Child Profile</h1>
   </header>
 
   <section class="child-details-container">
@@ -22,7 +22,30 @@
     </form>
   </section>
 
-  <!-- The Next Button for Navigation -->
+  <!-- Vaccination Schedule -->
+  <section class="vaccination-schedule">
+    <h2>Vaccination Schedule</h2>
+    <ul>
+      <li>Polio - <span id="polio-status">Pending</span></li>
+      <li>Hepatitis - <span id="hepatitis-status">Completed</span></li>
+      <li>Diphtheria - <span id="diphtheria-status">Pending</span></li>
+    </ul>
+  </section>
+
+  <!-- Health Metrics (Blood Pressure, Temperature, Heart Rate) -->
+  <section class="health-metrics">
+    <h2>Health Metrics</h2>
+    <form id="health-metrics-form">
+      <label for="temperature">Temperature (°C): <input type="number" id="temperature" required></label>
+      <label for="blood-pressure">Blood Pressure (mmHg): <input type="text" id="blood-pressure" required></label>
+      <label for="heart-rate">Heart Rate (bpm): <input type="number" id="heart-rate" required></label>
+      <button type="submit" id="submit-health-btn">Submit Health Metrics</button>
+    </form>
+    <div id="health-alert" style="display:none;">
+      <p>Warning: Abnormal health metrics detected. Please consult a healthcare provider.</p>
+    </div>
+  </section>
+
   <footer>
     <button id="next-btn" onclick="window.location.href='growth-tracking.html'">Next: Growth Tracking</button>
   </footer>

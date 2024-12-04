@@ -1,3 +1,4 @@
+/* General Styles */
 * {
     margin: 0;
     padding: 0;
@@ -5,46 +6,52 @@
   }
   
   body {
-    font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
-    line-height: 1.6;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient Background */
+    color: #fff;
+    padding: 20px;
+    min-height: 100vh;
   }
   
   header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 20px;
     text-align: center;
+    padding: 40px;
   }
   
-  section {
-    margin: 20px 0;
+  header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
   }
   
-  .form-container {
-    margin: 20px 0;
+  header p {
+    font-size: 20px;
+    margin-bottom: 40px;
   }
   
+  /* Form and Button Styles */
   form {
     display: flex;
     flex-direction: column;
+    gap: 15px;
   }
   
-  input {
+  input[type="text"], input[type="number"], input[type="email"], input[type="password"], input[type="file"] {
     padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
     border-radius: 5px;
-    width: 100%;
+    border: 1px solid #fff;
+    background-color: #333;
+    color: #fff;
+    font-size: 16px;
   }
   
   button {
     background-color: #4CAF50;
     color: white;
+    padding: 15px;
     border: none;
-    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
     transition: background-color 0.3s ease;
   }
   
@@ -52,47 +59,73 @@
     background-color: #45a049;
   }
   
-  button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-  }
-  
   footer {
-    background-color: #333;
-    color: white;
     text-align: center;
-    padding: 10px;
+    margin-top: 40px;
   }
   
-  @media screen and (min-width: 768px) {
-    .auth-container {
-      display: flex;
-      justify-content: space-around;
-    }
-  
-    .form-container {
-      width: 45%;
-    }
-  
-    .child-details-container,
-    .growth-tracking-container {
-      width: 70%;
-      margin: 20px auto;
-    }
+  footer button {
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
   }
   
-  @media screen and (max-width: 768px) {
-    button {
-      padding: 12px;
+  footer button:hover {
+    background-color: #444;
+  }
+  
+  /* Health Metrics and Vaccination Section */
+  .vaccination-schedule, .health-metrics {
+    margin-top: 40px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .vaccination-schedule h2, .health-metrics h2 {
+    margin-bottom: 10px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  li {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  #health-alert {
+    color: #f00;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    body {
+      padding: 10px;
     }
   
-    .form-container {
+    form {
       width: 100%;
     }
   
-    .child-details-container,
-    .growth-tracking-container {
+    .child-details-container, .growth-tracking-container {
       width: 100%;
+    }
+  
+    header h1 {
+      font-size: 28px;
+    }
+  
+    header p {
+      font-size: 18px;
     }
   }
   

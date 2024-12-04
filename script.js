@@ -1,54 +1,58 @@
-document.getElementById('sign-up-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    signUp(email, password);
-  });
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Handle child details form submission
+    const childForm = document.getElementById('child-details-form');
+    if (childForm) {
+      childForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('child-name').value;
+        const age = document.getElementById('child-age').value;
+        const gender = document.getElementById('child-gender').value;
+        const photo = document.getElementById('child-photo').files[0];
   
-  document.getElementById('login-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = document.getElementById('login-email').value;
-    const password = document.getElementById('login-password').value;
-    login(email, password);
-  });
-  
-  document.getElementById('child-details-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = document.getElementById('child-name').value;
-    const age = document.getElementById('child-age').value;
-    const gender = document.getElementById('child-gender').value;
-    const photo = document.getElementById('child-photo').files[0];
-    saveChildDetails(name, age, gender, photo);
-  });
-  
-  document.getElementById('growth-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const height = document.getElementById('height').value;
-    const weight = document.getElementById('weight').value;
-    const bmi = document.getElementById('bmi').value;
-    submitGrowthMetrics(height, weight, bmi);
-  });
-  
-  function signUp(email, password) {
-    alert(`Signing up with email: ${email}`);
-    // Here, use Firebase Authentication to handle sign-up logic
-  }
-  
-  function login(email, password) {
-    alert(`Logging in with email: ${email}`);
-    // Here, use Firebase Authentication to handle login logic
-  }
-  
-  function saveChildDetails(name, age, gender, photo) {
-    alert(`Saving child details: ${name}, Age: ${age}, Gender: ${gender}`);
-    if (photo) {
-      alert(`Uploading photo: ${photo.name}`);
-      // Use Firebase Storage to upload the photo here
+        console.log(`Saving child details: Name: ${name}, Age: ${age}, Gender: ${gender}`);
+        window.location.href = 'growth-tracking.html';
+      });
     }
-  }
   
-  function submitGrowthMetrics(height, weight, bmi) {
-    alert(`Submitting growth metrics: Height: ${height}, Weight: ${weight}, BMI: ${bmi}`);
-    // Save metrics to Firebase Firestore here
-  }
+    // Handle health metrics form submission
+    const healthForm = document.getElementById('health-metrics-form');
+    if (healthForm) {
+      healthForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const temperature = document.getElementById('temperature').value;
+        const bloodPressure = document.getElementById('blood-pressure').value;
+        const heartRate = document.getElementById('heart-rate').value;
+  
+        console.log(`Submitting health metrics: Temperature: ${temperature}, BP: ${bloodPressure}, Heart Rate: ${heartRate}`);
+  
+        // Health metrics alert logic
+        if (parseInt(temperature) > 38 || parseInt(heartRate) < 60 || parseInt(bloodPressure.split('/')[0]) > 140) {
+          document.getElementById('health-alert').style.display = 'block';
+        } else {
+          document.getElementById('health-alert').style.display = 'none';
+        }
+      });
+    }
+  
+    // Handle growth tracking form submission
+    const growthForm = document.getElementById('growth-form');
+    if (growthForm) {
+      growthForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const height = document.getElementById('height').value;
+        const weight = document.getElementById('weight').value;
+        const bmi = document.getElementById('bmi').value;
+  
+        console.log(`Submitting growth metrics: Height: ${height}, Weight: ${weight}, BMI: ${bmi}`);
+  
+        // Growth alert logic
+        if (bmi < 18.5 || bmi > 24.9) {
+          document.getElementById('growth-alert').style.display = 'block';
+        } else {
+          document.getElementById('growth-alert').style.display = 'none';
+        }
+      });
+    }
+  });
   
