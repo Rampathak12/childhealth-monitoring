@@ -3,30 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - Child Health Monitoring</title>
+  <title>Vaccine Schedule</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
-<body class="login-page">
+<body>
   <header>
-    <h1>Welcome to Child Health Monitoring</h1>
-    <p>Track your child's health, growth, and vaccinations!</p>
+    <h1>Child Vaccine Schedule</h1>
+    <p>Track your child's vaccinations and ensure their health.</p>
   </header>
 
-  <section class="auth-container centered">
-    <div class="login-box">
-      <h2>Login</h2>
-      <form id="login-form">
-        <input type="email" id="login-email" placeholder="Enter Email" required>
-        <input type="password" id="login-password" placeholder="Enter Password" required>
-        <button type="submit" id="login-btn">Login</button>
-      </form>
-      <p>Don’t have an account? <a href="#">Sign up here</a></p>
-    </div>
-  </section>
+  <main>
+    <section class="vaccine-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Vaccine</th>
+            <th>Birth</th>
+            <th>1 Month</th>
+            <th>2 Months</th>
+            <th>4 Months</th>
+            <th>6 Months</th>
+            <th>9 Months</th>
+            <th>12 Months</th>
+            <th>15 Months</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Hepatitis B (HepB)</td>
+            <td><input type="checkbox" id="hepB-birth"></td>
+            <td></td>
+            <td><input type="checkbox" id="hepB-2m"></td>
+            <td></td>
+            <td><input type="checkbox" id="hepB-6m"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Rotavirus (RV)</td>
+            <td></td>
+            <td></td>
+            <td><input type="checkbox" id="rota-2m"></td>
+            <td><input type="checkbox" id="rota-4m"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Diphtheria, Tetanus, Pertussis (DTaP)</td>
+            <td></td>
+            <td></td>
+            <td><input type="checkbox" id="dtap-2m"></td>
+            <td><input type="checkbox" id="dtap-4m"></td>
+            <td><input type="checkbox" id="dtap-6m"></td>
+            <td></td>
+            <td><input type="checkbox" id="dtap-12m"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Haemophilus Influenzae type b (Hib)</td>
+            <td></td>
+            <td></td>
+            <td><input type="checkbox" id="hib-2m"></td>
+            <td><input type="checkbox" id="hib-4m"></td>
+            <td></td>
+            <td></td>
+            <td><input type="checkbox" id="hib-12m"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Pneumococcal Conjugate (PCV)</td>
+            <td></td>
+            <td></td>
+            <td><input type="checkbox" id="pcv-2m"></td>
+            <td><input type="checkbox" id="pcv-4m"></td>
+            <td><input type="checkbox" id="pcv-6m"></td>
+            <td></td>
+            <td><input type="checkbox" id="pcv-12m"></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
 
   <footer>
-    <button id="next-btn" onclick="window.location.href='child-details.html'">Next: Growth Tracking</button>
+    <button id="next-btn" onclick="window.location.href='child-details.html'">Next: Growth Tracking</button> 
   </footer>
 </body>
 </html>
