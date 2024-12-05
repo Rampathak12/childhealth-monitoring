@@ -3,38 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Child Health Monitoring - Login/Sign Up</title>
+  <title>Login - Child Health Monitoring</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
-<body>
+<body class="login-page">
   <header>
-    <h1>Child Health Monitoring</h1>
-    <p>Welcome to the Health Tracker for Your Child</p>
+    <h1>Welcome to Child Health Monitoring</h1>
+    <p>Track your child's health, growth, and vaccinations!</p>
   </header>
 
-  <section class="auth-container">
-    <div class="form-container">
-      <h2>Sign Up</h2>
-      <form id="sign-up-form">
-        <input type="email" id="email" placeholder="Enter Email" required>
-        <input type="password" id="password" placeholder="Enter Password" required>
-        <button type="submit" id="sign-up-btn">Sign Up</button>
-      </form>
-    </div>
-
-    <div class="form-container">
+  <section class="auth-container centered">
+    <div class="login-box">
       <h2>Login</h2>
       <form id="login-form">
         <input type="email" id="login-email" placeholder="Enter Email" required>
         <input type="password" id="login-password" placeholder="Enter Password" required>
         <button type="submit" id="login-btn">Login</button>
       </form>
+      <p>Don’t have an account? <a href="#">Sign up here</a></p>
     </div>
   </section>
 
   <footer>
-    <p>&copy; 2024 Child Health Monitoring</p>
+    <button id="next-btn" onclick="window.location.href='child-details.html'">Next: Growth Tracking</button>
   </footer>
 </body>
 </html>

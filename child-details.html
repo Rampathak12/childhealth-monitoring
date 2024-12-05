@@ -22,28 +22,81 @@
     </form>
   </section>
 
-  <!-- Vaccination Schedule -->
+  <!-- Vaccination Schedule Table -->
   <section class="vaccination-schedule">
     <h2>Vaccination Schedule</h2>
-    <ul>
-      <li>Polio - <span id="polio-status">Pending</span></li>
-      <li>Hepatitis - <span id="hepatitis-status">Completed</span></li>
-      <li>Diphtheria - <span id="diphtheria-status">Pending</span></li>
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>Vaccine</th>
+          <th>Due Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Polio</td>
+          <td>1 Month</td>
+          <td><input type="checkbox" id="polio" /> Completed</td>
+        </tr>
+        <tr>
+          <td>Hepatitis B</td>
+          <td>2 Months</td>
+          <td><input type="checkbox" id="hepatitis-b" /> Completed</td>
+        </tr>
+        <tr>
+          <td>Diphtheria</td>
+          <td>3 Months</td>
+          <td><input type="checkbox" id="diphtheria" /> Pending</td>
+        </tr>
+        <tr>
+          <td>Measles</td>
+          <td>9 Months</td>
+          <td><input type="checkbox" id="measles" /> Pending</td>
+        </tr>
+        <tr>
+          <td>Chickenpox</td>
+          <td>1 Year</td>
+          <td><input type="checkbox" id="chickenpox" /> Pending</td>
+        </tr>
+        <tr>
+          <td>Tetanus</td>
+          <td>4-6 Years</td>
+          <td><input type="checkbox" id="tetanus" /> Pending</td>
+        </tr>
+        <tr>
+          <td>Hepatitis A</td>
+          <td>2 Years</td>
+          <td><input type="checkbox" id="hepatitis-a" /> Pending</td>
+        </tr>
+        <tr>
+          <td>Influenza (Flu)</td>
+          <td>Yearly</td>
+          <td><input type="checkbox" id="influenza" /> Pending</td>
+        </tr>
+        <tr>
+          <td>MMR (Measles, Mumps, Rubella)</td>
+          <td>1-2 Years</td>
+          <td><input type="checkbox" id="mmr" /> Pending</td>
+        </tr>
+        <tr>
+          <td>Rotavirus</td>
+          <td>2 Months</td>
+          <td><input type="checkbox" id="rotavirus" /> Completed</td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 
-  <!-- Health Metrics (Blood Pressure, Temperature, Heart Rate) -->
+  <!-- Health Metrics Section -->
   <section class="health-metrics">
     <h2>Health Metrics</h2>
-    <form id="health-metrics-form">
-      <label for="temperature">Temperature (°C): <input type="number" id="temperature" required></label>
-      <label for="blood-pressure">Blood Pressure (mmHg): <input type="text" id="blood-pressure" required></label>
-      <label for="heart-rate">Heart Rate (bpm): <input type="number" id="heart-rate" required></label>
-      <button type="submit" id="submit-health-btn">Submit Health Metrics</button>
-    </form>
-    <div id="health-alert" style="display:none;">
-      <p>Warning: Abnormal health metrics detected. Please consult a healthcare provider.</p>
-    </div>
+    <p>Temperature, Blood Pressure, Heart Rate - Check their ranges below.</p>
+    <ul>
+      <li><b>Temperature:</b> 36.5°C - 37.5°C (Normal)</li>
+      <li><b>Blood Pressure:</b> 90/60 mmHg - 120/80 mmHg (Normal)</li>
+      <li><b>Heart Rate:</b> 60 - 100 bpm (Normal)</li>
+    </ul>
   </section>
 
   <footer>
