@@ -1,97 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vaccine Schedule</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Child Health Monitoring</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Child Vaccine Schedule</h1>
-    <p>Track your child's vaccinations and ensure their health.</p>
-  </header>
+    <!-- Login Page -->
+    <div id="login-page" class="page">
+        <h2>Login</h2>
+        <form id="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br>
 
-  <main>
-    <section class="vaccine-table">
-      <table>
-        <thead>
-          <tr>
-            <th>Vaccine</th>
-            <th>Birth</th>
-            <th>1 Month</th>
-            <th>2 Months</th>
-            <th>4 Months</th>
-            <th>6 Months</th>
-            <th>9 Months</th>
-            <th>12 Months</th>
-            <th>15 Months</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Hepatitis B (HepB)</td>
-            <td><input type="checkbox" id="hepB-birth"></td>
-            <td></td>
-            <td><input type="checkbox" id="hepB-2m"></td>
-            <td></td>
-            <td><input type="checkbox" id="hepB-6m"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Rotavirus (RV)</td>
-            <td></td>
-            <td></td>
-            <td><input type="checkbox" id="rota-2m"></td>
-            <td><input type="checkbox" id="rota-4m"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Diphtheria, Tetanus, Pertussis (DTaP)</td>
-            <td></td>
-            <td></td>
-            <td><input type="checkbox" id="dtap-2m"></td>
-            <td><input type="checkbox" id="dtap-4m"></td>
-            <td><input type="checkbox" id="dtap-6m"></td>
-            <td></td>
-            <td><input type="checkbox" id="dtap-12m"></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Haemophilus Influenzae type b (Hib)</td>
-            <td></td>
-            <td></td>
-            <td><input type="checkbox" id="hib-2m"></td>
-            <td><input type="checkbox" id="hib-4m"></td>
-            <td></td>
-            <td></td>
-            <td><input type="checkbox" id="hib-12m"></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Pneumococcal Conjugate (PCV)</td>
-            <td></td>
-            <td></td>
-            <td><input type="checkbox" id="pcv-2m"></td>
-            <td><input type="checkbox" id="pcv-4m"></td>
-            <td><input type="checkbox" id="pcv-6m"></td>
-            <td></td>
-            <td><input type="checkbox" id="pcv-12m"></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-  </main>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br>
 
-  <footer>
-    <button id="next-btn" onclick="window.location.href='child-details.html'">Next: Growth Tracking</button> 
-  </footer>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <!-- Vaccine Page -->
+    <div id="vaccine-page" class="page" style="display: none;">
+        <h2>Vaccine Schedule</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Vaccine</th>
+                    <th>Birth</th>
+                    <th>1 mo</th>
+                    <th>2 mos</th>
+                    <th>4 mos</th>
+                    <th>6 mos</th>
+                    <th>9 mos</th>
+                    <th>12 mos</th>
+                    <th>15 mos</th>
+                    <th>Taken</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Hepatitis B (HepB)</td>
+                    <td>1st dose</td>
+                    <td></td>
+                    <td>2nd dose</td>
+                    <td></td>
+                    <td></td>
+                    <td>3rd dose</td>
+                    <td></td>
+                    <td></td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>Rotavirus (RV)</td>
+                    <td>1st dose</td>
+                    <td></td>
+                    <td>2nd dose</td>
+                    <td>3rd dose</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>Diphtheria, Tetanus, & Acellular Pertussis (DTaP)</td>
+                    <td>1st dose</td>
+                    <td></td>
+                    <td>2nd dose</td>
+                    <td>3rd dose</td>
+                    <td>4th dose</td>
+                    <td></td>
+                    <td></td>
+                    <td>5th dose</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button onclick="showChildHealthPage()">Go to Child Health Data</button>
+    </div>
+
+    <!-- Child Health Data Page -->
+    <div id="child-health-page" class="page" style="display: none;">
+        <h2>Child Health Data</h2>
+        <p>Here you can track the child's health data (Height, Weight, etc.)</p>
+        <form>
+            <label for="height">Height (cm):</label>
+            <input type="text" id="height" name="height" required><br>
+
+            <label for="weight">Weight (kg):</label>
+            <input type="text" id="weight" name="weight" required><br>
+
+            <label for="bmi">BMI:</label>
+            <input type="text" id="bmi" name="bmi" required><br>
+
+            <button type="submit">Save Health Data</button>
+        </form>
+        <button onclick="showVaccinePage()">Go to Vaccine Schedule</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

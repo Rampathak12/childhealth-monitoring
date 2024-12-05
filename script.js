@@ -1,63 +1,61 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Get all checkboxes in the vaccine table
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  
-    // Add event listener to each checkbox
-    checkboxes.forEach((checkbox) => {
-      checkbox.addEventListener('change', (event) => {
-        const vaccineName = event.target.closest('tr').querySelector('td:first-child').innerText;
-        const status = event.target.checked ? 'Taken' : 'Pending';
-        alert(`Vaccine: ${vaccineName}\nStatus: ${status}`);
-      });
-    });
-  
-    // Example congratulatory effect
-    const congratulateButton = document.querySelector('#congratulate-btn');
-    if (congratulateButton) {
-      congratulateButton.addEventListener('click', () => {
-        const confettiContainer = document.createElement('div');
-        confettiContainer.classList.add('confetti');
-        document.body.appendChild(confettiContainer);
-  
-        // Generate confetti effect
-        for (let i = 0; i < 100; i++) {
-          const confettiPiece = document.createElement('div');
-          confettiPiece.classList.add('confetti-piece');
-          confettiPiece.style.left = Math.random() * 100 + 'vw';
-          confettiPiece.style.animationDuration = Math.random() * 3 + 2 + 's';
-          confettiContainer.appendChild(confettiPiece);
+// Handle login form submission
+document.getElementById("login-form").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Get the username and password values
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    // Basic login validation (you can replace with more secure validation)
+    if (username === "admin" && password === "password123") {
+        // Hide login page, show vaccine page
+        document.getElementById("login-page").style.display = "none";
+        document.getElementById("vaccine-page").style.display = "block";
+    } else {
+        alert("Invalid credentials. Please try again.");
+    }
+});
+
+
+function showVaccinePage() {
+    document.getElementById("child-health-page").style.display = "none";
+    document.getElementById("vaccine-page").style.display = "block";
+}
+
+// Function to navigate to the child health data page
+function showChildHealthPage() {
+    document.getElementById("vaccine-page").style.display = "none";
+    document.getElementById("child-health-page").style.display = "block";
+}
+
+// Handle vaccine status changes (checkbox functionality)
+document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
+    checkbox.addEventListener("change", function() {
+        const isChecked = checkbox.checked;
+        const vaccineRow = checkbox.closest("tr"); // Get the row of the vaccine
+        const vaccineName = vaccineRow.querySelector("td").textContent; // Get the vaccine name
+
+        if (isChecked) {
+            alert(`You have marked the vaccine "${vaccineName}" as taken.`);
+        } else {
+            alert(`You have unmarked the vaccine "${vaccineName}".`);
         }
-  
-        setTimeout(() => {
-          confettiContainer.remove();
-        }, 5000); // Remove confetti after 5 seconds
-      });
+    });
+});
+
+// Optional: Add a congratulatory message when all vaccines are marked as taken
+function checkVaccineCompletion() {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const allChecked = Array.from(checkboxes).every(function(checkbox) {
+        return checkbox.checked;
+    });
+
+    if (allChecked) {
+        alert("Congratulations! All vaccines have been marked as taken.");
     }
-  });
-  
-  // Confetti CSS
-  const style = document.createElement('style');
-  style.innerHTML = `
-    .confetti-piece {
-      position: absolute;
-      top: 0;
-      width: 10px;
-      height: 10px;
-      background-color: randomColor();
-      animation: fall linear infinite;
-    }
-  
-    @keyframes fall {
-      to {
-        transform: translateY(100vh) rotate(360deg);
-      }
-    }
-  `;
-  document.head.appendChild(style);
-  
-  // Random color function for confetti
-  function randomColor() {
-    const colors = ['#ff0', '#f0f', '#0ff', '#f00', '#0f0', '#00f'];
-    return colors[Math.floor(Math.random() * colors.length)];
-  }
-  
+}
+
+// Run the check when a checkbox is clicked
+document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
+    checkbox.addEventListener("change", checkVaccineCompletion);
+});

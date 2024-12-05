@@ -3,39 +3,52 @@ body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(to bottom, #e8f8f5, #d1f2eb);
-  color: #333;
+  background-color: #f9f9f9;
+  text-align: center;
 }
 
-header {
+.page {
+  display: none;
+}
+
+#login-page {
+  display: block;
+  padding: 50px;
+}
+
+h2 {
+  color: #4CAF50;
+}
+
+input {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+button {
+  padding: 10px 20px;
   background-color: #4CAF50;
   color: white;
-  text-align: center;
-  padding: 20px;
-  font-size: 24px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-header p {
-  margin: 10px 0 0;
-  font-size: 16px;
+button:hover {
+  background-color: #45a049;
 }
 
 /* Vaccine Table Styles */
-.vaccine-table {
+table {
   margin: 20px auto;
   width: 90%;
-  max-width: 1200px;
   border-collapse: collapse;
-  background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-table {
-  width: 100%;
-  border-spacing: 0;
-  border: 1px solid #ddd;
 }
 
 thead {
@@ -43,93 +56,44 @@ thead {
   color: white;
 }
 
-thead th {
-  padding: 15px;
-  font-size: 16px;
-  text-transform: uppercase;
-  border: 1px solid #ddd;
-}
-
-tbody td {
-  padding: 12px;
-  font-size: 14px;
+th, td {
   text-align: center;
+  padding: 15px;
   border: 1px solid #ddd;
-}
-
-tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
 }
 
 input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
-  accent-color: #4CAF50;
+  width: 20px;
+  height: 20px;
+}
+
+/* Child Health Data Form */
+form {
+  margin: 20px auto;
+  width: 60%;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   table {
-    font-size: 12px;
+      font-size: 12px;
+      width: 100%;
   }
 
-  th, td {
-    padding: 10px;
+  input, button {
+      width: 100%;
+      padding: 12px;
   }
-}
-
-/* Login Page Style */
-.login-box {
-  width: 350px;
-  margin: 50px auto;
-  background-color: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  padding: 20px;
-  text-align: center;
-}
-
-.login-box h2 {
-  margin: 0 0 20px;
-  font-size: 22px;
-  color: #4CAF50;
-}
-
-.login-box input[type="text"],
-.login-box input[type="password"] {
-  width: 80%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-
-.login-box button {
-  width: 84%;
-  padding: 10px;
-  margin: 10px 0;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.login-box button:hover {
-  background-color: #45a049;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 10px;
-  background-color: #4CAF50;
-  color: white;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  font-size: 14px;
 }
