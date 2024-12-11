@@ -1,105 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Child Health Monitoring</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Child Health Monitoring System</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS -->
 </head>
 <body>
-    <!-- Login Page -->
-    <div id="login-page" class="page">
-        <h2>Login</h2>
-        <form id="login-form">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required><br>
+  <h1>Welcome to the Child Health Monitoring System</h1>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br>
+  <div id="user-status"></div>
 
-            <button type="submit">Login</button>
-        </form>
-    </div>
+  <div id="auth-container">
+    <button id="login-btn">Login</button>
+    <button id="register-btn">Register</button>
+  </div>
 
-    <!-- Vaccine Page -->
-    <div id="vaccine-page" class="page" style="display: none;">
-        <h2>Vaccine Schedule</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Vaccine</th>
-                    <th>Birth</th>
-                    <th>1 mo</th>
-                    <th>2 mos</th>
-                    <th>4 mos</th>
-                    <th>6 mos</th>
-                    <th>9 mos</th>
-                    <th>12 mos</th>
-                    <th>15 mos</th>
-                    <th>Taken</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Hepatitis B (HepB)</td>
-                    <td>1st dose</td>
-                    <td></td>
-                    <td>2nd dose</td>
-                    <td></td>
-                    <td></td>
-                    <td>3rd dose</td>
-                    <td></td>
-                    <td></td>
-                    <td><input type="checkbox"></td>
-                </tr>
-                <tr>
-                    <td>Rotavirus (RV)</td>
-                    <td>1st dose</td>
-                    <td></td>
-                    <td>2nd dose</td>
-                    <td>3rd dose</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><input type="checkbox"></td>
-                </tr>
-                <tr>
-                    <td>Diphtheria, Tetanus, & Acellular Pertussis (DTaP)</td>
-                    <td>1st dose</td>
-                    <td></td>
-                    <td>2nd dose</td>
-                    <td>3rd dose</td>
-                    <td>4th dose</td>
-                    <td></td>
-                    <td></td>
-                    <td>5th dose</td>
-                    <td><input type="checkbox"></td>
-                </tr>
-            </tbody>
-        </table>
-        <button onclick="showChildHealthPage()">Go to Child Health Data</button>
-    </div>
+  <div id="data-entry-form" style="display:none;">
+    <h2>Enter Child's Growth Data</h2>
+    <form id="growth-data-form">
+      <input type="text" id="child-name" placeholder="Child Name" required>
+      <input type="number" id="height" placeholder="Height (cm)" required>
+      <input type="number" id="weight" placeholder="Weight (kg)" required>
+      <input type="number" id="bmi" placeholder="BMI" required>
+      <input type="number" id="blood-pressure" placeholder="Blood Pressure" required>
+      <button type="submit">Submit Data</button>
+    </form>
+  </div>
 
-    <!-- Child Health Data Page -->
-    <div id="child-health-page" class="page" style="display: none;">
-        <h2>Child Health Data</h2>
-        <p>Here you can track the child's health data (Height, Weight, etc.)</p>
-        <form>
-            <label for="height">Height (cm):</label>
-            <input type="text" id="height" name="height" required><br>
+  <!-- Firebase Modular SDK (v9+) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+    import { getAuth } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
 
-            <label for="weight">Weight (kg):</label>
-            <input type="text" id="weight" name="weight" required><br>
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID",
+      measurementId: "YOUR_MEASUREMENT_ID"
+    };
 
-            <label for="bmi">BMI:</label>
-            <input type="text" id="bmi" name="bmi" required><br>
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const database = getDatabase(app);
 
-            <button type="submit">Save Health Data</button>
-        </form>
-        <button onclick="showVaccinePage()">Go to Vaccine Schedule</button>
-    </div>
+    document.getElementById('login-btn').addEventListener('click', function() {
+      const email = prompt("Enter your email");
+      const password = prompt("Enter your password");
 
-    <script src="script.js"></script>
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          document.getElementById('user-status').innerText = `Logged in as ${user.email}`;
+        })
+        .catch((error) => {
+          const errorMessage = error.message;
+          console.error(errorMessage);
+        });
+    });
+
+    document.getElementById('register-btn').addEventListener('click', function() {
+      const email = prompt("Enter your email");
+      const password = prompt("Enter your password");
+
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          document.getElementById('user-status').innerText = `Registered as ${user.email}`;
+        })
+        .catch((error) => {
+          const errorMessage = error.message;
+          console.error(errorMessage);
+        });
+    });
+
+    document.getElementById('growth-data-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const childName = document.getElementById('child-name').value;
+      const height = document.getElementById('height').value;
+      const weight = document.getElementById('weight').value;
+      const bmi = document.getElementById('bmi').value;
+      const bloodPressure = document.getElementById('blood-pressure').value;
+
+      const dataRef = ref(database, 'growthData/' + Date.now());
+      set(dataRef, {
+        childName,
+        height,
+        weight,
+        bmi,
+        bloodPressure
+      })
+      .then(() => {
+        alert("Growth data saved successfully!");
+        document.getElementById('growth-data-form').reset();
+      })
+      .catch((error) => {
+        console.error("Error saving data:", error);
+      });
+    });
+  </script>
+
+  <!-- Link to external JavaScript -->
+  <script type="module" src="main.js"></script>
 </body>
 </html>

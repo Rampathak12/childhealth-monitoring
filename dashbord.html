@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Child Health Monitoring System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="user-info"></div>
+    
+    <h1>Child Growth Data</h1>
+    
+    <form id="growth-form">
+        <label for="child-name">Child Name:</label>
+        <input type="text" id="child-name" required><br>
+        
+        <label for="height">Height (cm):</label>
+        <input type="number" id="height" required><br>
+        
+        <label for="weight">Weight (kg):</label>
+        <input type="number" id="weight" required><br>
+        
+        <label for="bmi">BMI:</label>
+        <input type="number" id="bmi" required><br>
+        
+        <label for="pressure">Blood Pressure (mmHg):</label>
+        <input type="number" id="pressure" required><br>
+        
+        <button type="submit">Submit Data</button>
+    </form>
+    
+    <button id="logoutBtn">Logout</button>
+
+    <script type="module" src="src/dashboard.js"></script>
+</body>
+</html>
